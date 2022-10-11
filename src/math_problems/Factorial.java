@@ -13,6 +13,7 @@ public class Factorial {
 
     public static void main(String[] args) {
         factorial(5);
+        System.out.println("factorial is :" + factorialWithRecursion(5));
 
 
     }
@@ -23,6 +24,17 @@ public class Factorial {
             total *= i;
         }
         System.out.println(total);
+
+    }
+    public static int factorialWithRecursion(int n) {
+        if (n == 1) {
+            return 1;
+        } else {
+
+            int Y=n * factorialWithRecursion(n - 1);
+
+            return Y;
+        }
 
     }
 }
