@@ -1,6 +1,4 @@
 Course #,Section #,SectionNNN,AltId,LastName,FirstName,Email,Max Pt-Weighted Sum,Pt-Weighted Sum, Max Raw Sum, Raw Sum,Correct,CorrectLate,CorrectUnassigned,Incorrect,IncorrectUnassigned,
-DATES,,,,,,,,,,,,,,,,
-POINTS,,,,,,,,,,,,,,,,
 "NY1","","56899","null","Ait kaid","Wissam","waitkaid@gmail.com",619,12,619,12,0,0,12,0,0,
 "NY1","","56899","null","akbi","khalil","khalil.akbi@gmail.com",619,604,619,604,0,0,604,0,8,
 "NY1","","56899","null","Akhter","Sharmin","sharmin.akhter0091@gmail.com",619,3,619,3,0,0,3,0,4,
