@@ -5,28 +5,29 @@ import java.util.Random;
 
 import databases.SharedStepsDatabase;
 
-    /** INSTRUCTIONS
-     * Demonstrate all the different kind of sorting algorithms from the Sorting class. There is an example provided
-     *  below to get you started.
-     *
-     *  You must store all the sorted arrays into their own database table, and retrieve the values and print them
-     *  Display the execution time for each sorting - Example below.
-     *
-     *  You may use any database, such as MongoDB, Oracle MySql, PostgreSQL, etc, to store data and retrieve data.
-     *
-     *  BONUS: Come to a conclusion about which sorting algorithm is the most efficient, given data sets with a size of:
-     *         10
-     *         100
-     *         1000
-     *         10000
-     *         100000
-     */
+/**
+ * INSTRUCTIONS
+ * Demonstrate all the different kind of sorting algorithms from the Sorting class. There is an example provided
+ * below to get you started.
+ * <p>
+ * You must store all the sorted arrays into their own database table, and retrieve the values and print them
+ * Display the execution time for each sorting - Example below.
+ * <p>
+ * You may use any database, such as MongoDB, Oracle MySql, PostgreSQL, etc, to store data and retrieve data.
+ * <p>
+ * BONUS: Come to a conclusion about which sorting algorithm is the most efficient, given data sets with a size of:
+ * 10
+ * 100
+ * 1000
+ * 10000
+ * 100000
+ */
 
 public class SortEfficiency {
 
     public static void main(String[] args) throws Exception {
         // Declare and initialize an array of a desired length with random numbers (Try this with 100, 1000, 10000, 100000)
-        int[] numberArray = new int[100];
+        int[] numberArray = new int[1000];
         insertRandomNumbersIntoArray(numberArray);
 
         SortingAlgorithms sort = new SortingAlgorithms();
@@ -53,13 +54,6 @@ public class SortEfficiency {
         randomize(numberArray);
 
 
-
-
-
-
-
-
-
         // region Insertion Sort
         numberArray = sort.insertionSort(numberArray);
         long insertionSortExecutionTime = sort.executionTime;
@@ -69,7 +63,7 @@ public class SortEfficiency {
                 + insertionSortExecutionTime + " milliseconds");
 
         // insert sorted array to database
-        ssdb.insertIntegerArray("insertion_sort", "sorted_numbers",numberArray);
+        ssdb.insertIntegerArray("insertion_sort", "sorted_numbers", numberArray);
 
         String query_insertion = "SELECT * FROM INSERTION_SORT";
         List<String> insertion_sorted = ssdb.executeQueryReadAllSingleColumn(query, "sorted_numbers");
@@ -80,7 +74,25 @@ public class SortEfficiency {
         // randomize sorted array
         randomize(numberArray);
 
+
         // region Bubble Sort
+
+        numberArray = sort.bubbleSort(numberArray);
+        long bubbleSortExecutionTime = sort.executionTime;
+
+
+        System.out.println("Total Execution Time of " + numberArray.length + " numbers in Bubble Sort took: "
+                + bubbleSortExecutionTime + " milliseconds");
+
+        // insert sorted array to database
+        ssdb.insertIntegerArray("bubble_sort", "sorted_numbers", numberArray);
+
+        String query_bubbleSort = "SELECT * FROM INSERTION_SORT";
+        List<String> bubble_sorted = ssdb.executeQueryReadAllSingleColumn(query, "sorted_numbers");
+
+        // printing the value
+        printValue(sorted_numbers);
+
 
         // endregion
 
@@ -116,6 +128,7 @@ public class SortEfficiency {
     }
 
     // region Helper Methods
+
     /**
      * Inserts random integers into an int[] array. All numbers have an upper bound of 1,000,000
      *
