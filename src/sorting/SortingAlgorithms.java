@@ -3,12 +3,13 @@ package sorting;
 public class SortingAlgorithms {
 
 
-    /** INSTRUCTIONS
+    /**
+     * INSTRUCTIONS
      * You must implement all of the sorting algorithms below. Feel free to add any helper methods that you may need,
      * but make sure they are private, as to not be accessed outside of this class.
-     *
+     * <p>
      * You must also store the sorted arrays into their own individual database tables (Selection Sort should be stored
-     *  in table `selection_sort`, Insertion Sort should be stored in table `insertion_sort`)
+     * in table `selection_sort`, Insertion Sort should be stored in table `insertion_sort`)
      */
 
     long executionTime = 0;
@@ -45,13 +46,13 @@ public class SortingAlgorithms {
         // IMPLEMENT HERE
         for (int i = 1; i < array.length; i++) {
             int temp = array[i];
-            int j = i -1;
+            int j = i - 1;
 
-            while (j >=0 && array[j] > temp){
-                array[j+1] = array[j];
-                j = j -1;
+            while (j >= 0 && array[j] > temp) {
+                array[j + 1] = array[j];
+                j = j - 1;
             }
-            array[j+1] = temp;
+            array[j + 1] = temp;
 
         }
 
@@ -66,19 +67,21 @@ public class SortingAlgorithms {
         int i, j, temp;
         boolean swapped = false;
 
-        int n = array.length;;
-        for ( i = 0; i < n - 1; i++) {
-            for ( j = 0; j < n - i - 1; j++) {
-                if (array[j] > array[j + 1]){
+        int n = array.length;
+        ;
+        for (i = 0; i < n - 1; i++) {
+            for (j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
                     // we swap the two values
-                     temp = array[j];
-                    array[j] = array[j+1];
-                    array[j +1] = temp;
+                    temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                     swapped = true;
 
                 }
             }
-            if (swapped == false) break;;
+            if (swapped == false) break;
+            ;
         }
 
 
@@ -88,7 +91,63 @@ public class SortingAlgorithms {
     public int[] mergeSort(int[] array) {
         // IMPLEMENT HERE
 
+
+        // first we need to split the array into left side and right side and use recursion until it's self ordered(one element array)
+        int length = array.length;
+
+        if (length < 2) {
+            return array;
+        }
+        int midIndex = length / 2;
+        int[] leftSide = new int[midIndex];
+        int[] rightSide = new int[length - midIndex];
+        // copying elements from original array
+        for (int i = 0; i < midIndex; i++) {
+            leftSide[i] = array[i];
+        }
+        for (int i = midIndex; i < length; i++) {
+
+            rightSide[i - midIndex] = array[i];
+        }
+
+        // we need to call it recursively
+        mergeSort(leftSide);
+        mergeSort(rightSide);
+
+        //
+
+        // created a merge method below
+        merge(array, leftSide, rightSide);
         return array;
+    }
+
+    private static void merge(int[] array, int[] leftSide, int[] rightSide) {
+        int length = array.length;
+        ;
+        int leftSize = leftSide.length;
+        int rightSize = rightSide.length;
+        int i = 0, j = 0, k = 0;
+        while (i < leftSize && j < rightSize) {
+            if (leftSide[i] <= rightSide[j]) {
+                array[k] = leftSide[i];
+                i++;
+            } else {
+                array[k] = rightSide[j];
+                j++;
+            }
+            k++;
+
+        }
+        while (i < leftSize) {
+            array[k] = leftSide[i];
+            i++;
+            k++;
+        }
+        while (j < rightSize) {
+            array[k] = rightSide[j];
+            j++;
+            k++;
+        }
     }
 
     public int[] quickSort(int[] array) {
