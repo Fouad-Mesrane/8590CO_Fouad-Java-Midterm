@@ -29,7 +29,6 @@ public class DataReader {
         String textFilePath = System.getProperty("user.dir") + "/src/data_structures/data/self-driving-car";
 
 
-
         // creating a new file
         File file = new File(textFilePath);
 
@@ -40,26 +39,26 @@ public class DataReader {
             String wholeText = "";
             while ((line = br.readLine()) != null) {
                 // printing self-driving-car to the console and store it to the String wholeText.
-               // System.out.println(line);
-               wholeText = wholeText + line;
+                // System.out.println(line);
+                wholeText = wholeText + line;
 
             }
             // split the string wholeText into word and store it in a string array
-            String [] arrText = wholeText.split(" ");
+            String[] arrText = wholeText.split(" ");
             System.out.println("****************LinkedList*******************");
             // create a linkedList and store each word of arrText inside it.
             List<Object> linkedList = new LinkedList<>(Arrays.asList(arrText));
             //removing an element from a linked list
             linkedList.remove(0);
             // retrieving data using for each loop
-            for (Object w: linkedList
-                 ) {
+            for (Object w : linkedList
+            ) {
                 System.out.println(w);
             }
             System.out.println("****************Stack*******************");
             // we store each word into a stack with different method
             //1. create a stack
-            Stack <Object> stack = new Stack<>();
+            Stack<Object> stack = new Stack<>();
             //2. loop through arrText and push each word to the stack
             for (int i = 0; i < arrText.length; i++) {
                 stack.push(arrText[i]);
@@ -67,11 +66,11 @@ public class DataReader {
 
             // iterate over stack using the iterator()
             Iterator it = stack.iterator();
-            while (it.hasNext()){
+            while (it.hasNext()) {
                 System.out.println(it.next());
             }
             // searching for an element
-            System.out.println(  stack.search("the"));
+            System.out.println(stack.search("the"));
             // removing element from a stack
             stack.remove("right");
 
@@ -83,14 +82,14 @@ public class DataReader {
 
             // storing data into DB
             String tableName = "self_driving_car", colName = "word";
-            sql.insertList(tableName,colName,linkedList);
+            sql.insertList(tableName, colName, linkedList);
 
             // retriving data from DB
             System.out.println("**************Reading from DB***************");
             String queryReadAll = "select * from " + tableName;
             List dataFromDB = sql.executeQueryReadAll(queryReadAll);
-            for (Object list:dataFromDB
-                 ) {
+            for (Object list : dataFromDB
+            ) {
                 System.out.println(list);
             }
 

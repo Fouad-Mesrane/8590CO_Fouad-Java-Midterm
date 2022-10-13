@@ -52,15 +52,32 @@ public class SortEfficiency {
         // You must randomize the number array after each sorting algorithm to prepare it for the next sorting algorithm
         randomize(numberArray);
 
+
+
+
+
+
+
+
+
         // region Insertion Sort
         numberArray = sort.insertionSort(numberArray);
         long insertionSortExecutionTime = sort.executionTime;
 
+
         System.out.println("Total Execution Time of " + numberArray.length + " numbers in Insertion Sort took: "
                 + insertionSortExecutionTime + " milliseconds");
 
-        // endregion
+        // insert sorted array to database
+        ssdb.insertIntegerArray("insertion_sort", "sorted_numbers",numberArray);
 
+        String query_insertion = "SELECT * FROM INSERTION_SORT";
+        List<String> insertion_sorted = ssdb.executeQueryReadAllSingleColumn(query, "sorted_numbers");
+
+        // printing the value
+        printValue(sorted_numbers);
+        // endregion
+        // randomize sorted array
         randomize(numberArray);
 
         // region Bubble Sort
