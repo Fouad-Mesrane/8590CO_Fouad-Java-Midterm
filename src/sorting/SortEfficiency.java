@@ -69,7 +69,7 @@ public class SortEfficiency {
         List<String> insertion_sorted = ssdb.executeQueryReadAllSingleColumn(query, "sorted_numbers");
 
         // printing the value
-        printValue(sorted_numbers);
+        printValue(insertion_sorted);
         // endregion
         // randomize sorted array
         randomize(numberArray);
@@ -91,7 +91,7 @@ public class SortEfficiency {
         List<String> bubble_sorted = ssdb.executeQueryReadAllSingleColumn(query, "sorted_numbers");
 
         // printing the value
-        printValue(sorted_numbers);
+        printValue(bubble_sorted);
 
 
         // endregion
@@ -100,11 +100,28 @@ public class SortEfficiency {
 
         // region Merge Sort
 
+        numberArray = sort.mergeSort(numberArray);
+        long mergeSortExecutionTime = sort.executionTime;
+
+
+        System.out.println("Total Execution Time of " + numberArray.length + " numbers in Bubble Sort took: "
+                + mergeSortExecutionTime + " milliseconds");
+
+        // insert sorted array to database
+        ssdb.insertIntegerArray("merge_sort", "sorted_numbers", numberArray);
+
+        String query_mergeSort = "SELECT * FROM MERGE_SORT";
+        List<String> merge_sorted = ssdb.executeQueryReadAllSingleColumn(query_mergeSort, "sorted_numbers");
+
+        // printing the value
+        printValue(merge_sorted);
+
         // endregion
 
         randomize(numberArray);
 
         // region Quick Sort
+
 
         // endregion
 
