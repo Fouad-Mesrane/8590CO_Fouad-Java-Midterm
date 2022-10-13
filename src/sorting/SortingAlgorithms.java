@@ -63,6 +63,24 @@ public class SortingAlgorithms {
 
     public int[] bubbleSort(int[] array) {
         // IMPLEMENT HERE
+        int i, j, temp;
+        boolean swapped = false;
+
+        int n = array.length;;
+        for ( i = 0; i < n - 1; i++) {
+            for ( j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]){
+                    // we swap the two values
+                     temp = array[j];
+                    array[j] = array[j+1];
+                    array[j +1] = temp;
+                    swapped = true;
+
+                }
+            }
+            if (swapped == false) break;;
+        }
+
 
         return array;
     }
