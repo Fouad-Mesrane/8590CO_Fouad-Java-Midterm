@@ -157,14 +157,14 @@ public class SortingAlgorithms {
         // IMPLEMENT HERE
         final long startTime = System.currentTimeMillis();
         // check the method below quicksort
-        quickSort(array, 0 , array.length - 1);
+        quickSort(array, 0, array.length - 1);
 
         final long endTime = System.currentTimeMillis();
         this.executionTime = endTime - startTime;
         return array;
     }
 
-    public int [] quickSort(int[] array, int low, int high) {
+    public int[] quickSort(int[] array, int low, int high) {
         if (low >= high) {
             return array;
         }
@@ -189,18 +189,61 @@ public class SortingAlgorithms {
 
         quickSort(array, low, ePointer);
         quickSort(array, sPointer, high);
-        return  array;
+        return array;
     }
 
     public int[] heapSort(int[] array) {
         // IMPLEMENT HERE
         final long startTime = System.currentTimeMillis();
+        // code implemented below
+
+        int N = array.length;
+
+        // Build heap (rearrange array)
+        for (int i = N / 2 - 1; i >= 0; i--)
+            heapify(array, N, i);
+
+        // One by one extract an element from heap
+        for (int i = N - 1; i > 0; i--) {
+            // Move current root to end
+            int temp = array[0];
+            array[0] = array[i];
+            array[i] = temp;
+
+            // call max heapify on the reduced heap
+            heapify(array, i, 0);
 
 
+        }
         final long endTime = System.currentTimeMillis();
         this.executionTime = endTime - startTime;
         return array;
+
     }
+
+    // create a heapify
+    private void heapify(int[] array, int N, int i) {
+        int largestAtIndex = i;
+        // finding the left child element to the parent element
+        int leftChild = 2 * i + 1;
+        // finding the right child element to the parent element
+        int rightChild = 2 * i + 2;
+
+        if (leftChild < N && array[leftChild] > array[largestAtIndex]) {
+            largestAtIndex = leftChild;
+        }
+        if (rightChild < N && array[rightChild] > array[largestAtIndex]) {
+            largestAtIndex = rightChild;
+        }
+        if (largestAtIndex != i) {
+            int temp = array[i];
+            array[i] = array[largestAtIndex];
+            array[largestAtIndex] = temp;
+
+            heapify(array, N, largestAtIndex);
+        }
+    }
+
 
     public int[] bucketSort(int[] array) {
         //implement here
@@ -221,4 +264,6 @@ public class SortingAlgorithms {
         this.executionTime = endTime - startTime;
         return array;
     }
+
+
 }
