@@ -142,6 +142,22 @@ public class SortEfficiency {
 
         // region Heap Sort
 
+        numberArray = sort.heapSort(numberArray);
+        long heapSortExecutionTime = sort.executionTime;
+
+
+        System.out.println("Total Execution Time of " + numberArray.length + " numbers in Heap Sort took: "
+                + heapSortExecutionTime + " milliseconds");
+
+        // insert sorted array to database
+        ssdb.insertIntegerArray("heap_sort", "sorted_numbers", numberArray);
+
+        String query_heapSort = "SELECT * FROM MERGE_SORT";
+        List<String> heap_sorted = ssdb.executeQueryReadAllSingleColumn(query_heapSort, "sorted_numbers");
+
+        // printing the value
+        //printValue(heap_sorted);
+
         // endregion
 
         randomize(numberArray);
