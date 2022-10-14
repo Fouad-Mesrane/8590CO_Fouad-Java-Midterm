@@ -46,7 +46,7 @@ public class SortEfficiency {
         // Retrieve all elements from the newly created table
         String query = "SELECT * FROM SELECTION_SORT";
         List<String> sorted_numbers = ssdb.executeQueryReadAllSingleColumn(query, "sorted_numbers");
-        printValue(sorted_numbers);
+        // printValue(sorted_numbers);
 
         // endregion
 
@@ -69,7 +69,7 @@ public class SortEfficiency {
         List<String> insertion_sorted = ssdb.executeQueryReadAllSingleColumn(query, "sorted_numbers");
 
         // printing the value
-        printValue(insertion_sorted);
+        // printValue(insertion_sorted);
         // endregion
         // randomize sorted array
         randomize(numberArray);
@@ -91,7 +91,7 @@ public class SortEfficiency {
         List<String> bubble_sorted = ssdb.executeQueryReadAllSingleColumn(query, "sorted_numbers");
 
         // printing the value
-        printValue(bubble_sorted);
+        //  printValue(bubble_sorted);
 
 
         // endregion
@@ -104,7 +104,7 @@ public class SortEfficiency {
         long mergeSortExecutionTime = sort.executionTime;
 
 
-        System.out.println("Total Execution Time of " + numberArray.length + " numbers in Bubble Sort took: "
+        System.out.println("Total Execution Time of " + numberArray.length + " numbers in Merge Sort took: "
                 + mergeSortExecutionTime + " milliseconds");
 
         // insert sorted array to database
@@ -114,7 +114,7 @@ public class SortEfficiency {
         List<String> merge_sorted = ssdb.executeQueryReadAllSingleColumn(query_mergeSort, "sorted_numbers");
 
         // printing the value
-        printValue(merge_sorted);
+        //printValue(merge_sorted);
 
         // endregion
 
@@ -122,7 +122,20 @@ public class SortEfficiency {
 
         // region Quick Sort
 
+        numberArray = sort.quickSort(numberArray);
+        long quickSortExecutionTime = sort.executionTime;
 
+
+        System.out.println("Total Execution Time of " + numberArray.length + " numbers in Quick Sort took: "
+                + quickSortExecutionTime + " milliseconds");
+
+        // insert sorted array to database
+        ssdb.insertIntegerArray("quick_sort", "sorted_numbers", numberArray);
+
+        String query_quickSort = "SELECT * FROM MERGE_SORT";
+        List<String> quick_sorted = ssdb.executeQueryReadAllSingleColumn(query_quickSort, "sorted_numbers");
+
+        // printValue(quick_sorted);
         // endregion
 
         randomize(numberArray);
