@@ -64,6 +64,7 @@ public class SortingAlgorithms {
 
     public int[] bubbleSort(int[] array) {
         // IMPLEMENT HERE
+        final long startTime = System.currentTimeMillis();
         int i, j, temp;
         boolean swapped = false;
 
@@ -84,13 +85,14 @@ public class SortingAlgorithms {
             ;
         }
 
-
+        final long endTime = System.currentTimeMillis();
+        this.executionTime = endTime - startTime;
         return array;
     }
 
     public int[] mergeSort(int[] array) {
         // IMPLEMENT HERE
-
+        final long startTime = System.currentTimeMillis();
 
         // first we need to split the array into left side and right side and use recursion until it's self ordered(one element array)
         int length = array.length;
@@ -118,12 +120,13 @@ public class SortingAlgorithms {
 
         // created a merge method below
         merge(array, leftSide, rightSide);
+        final long endTime = System.currentTimeMillis();
+        this.executionTime = endTime - startTime;
         return array;
     }
 
     private static void merge(int[] array, int[] leftSide, int[] rightSide) {
         int length = array.length;
-        ;
         int leftSize = leftSide.length;
         int rightSize = rightSide.length;
         int i = 0, j = 0, k = 0;
@@ -152,25 +155,70 @@ public class SortingAlgorithms {
 
     public int[] quickSort(int[] array) {
         // IMPLEMENT HERE
+        final long startTime = System.currentTimeMillis();
+        // check the method below quicksort
+        quickSort(array, 0 , array.length - 1);
 
+        final long endTime = System.currentTimeMillis();
+        this.executionTime = endTime - startTime;
         return array;
+    }
+
+    public int [] quickSort(int[] array, int low, int high) {
+        if (low >= high) {
+            return array;
+        }
+        int sPointer = low, ePointer = high, m = sPointer + (ePointer - sPointer) / 2, pivot = array[m];
+
+        while (sPointer <= ePointer) {
+
+            while (array[sPointer] < pivot) {
+                sPointer++;
+            }
+            while (array[ePointer] > pivot) {
+                ePointer--;
+            }
+            if (sPointer <= ePointer) {
+                int temp = array[sPointer];
+                array[sPointer] = array[ePointer];
+                array[ePointer] = temp;
+                sPointer++;
+                ePointer--;
+            }
+        }
+
+        quickSort(array, low, ePointer);
+        quickSort(array, sPointer, high);
+        return  array;
     }
 
     public int[] heapSort(int[] array) {
         // IMPLEMENT HERE
+        final long startTime = System.currentTimeMillis();
 
+
+        final long endTime = System.currentTimeMillis();
+        this.executionTime = endTime - startTime;
         return array;
     }
 
     public int[] bucketSort(int[] array) {
         //implement here
+        final long startTime = System.currentTimeMillis();
 
+
+        final long endTime = System.currentTimeMillis();
+        this.executionTime = endTime - startTime;
         return array;
     }
 
     public int[] shellSort(int[] array) {
         //implement here
+        final long startTime = System.currentTimeMillis();
 
+
+        final long endTime = System.currentTimeMillis();
+        this.executionTime = endTime - startTime;
         return array;
     }
 }
