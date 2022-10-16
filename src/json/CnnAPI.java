@@ -58,7 +58,8 @@ public class CnnAPI {
      */
 
     public static void main(String[] args) throws IOException, JSONException {
-        String apiKey = "e021b2595ba84a6dae27222593908fd4";
+        String apiKey = "" +
+                ""; // my api key
         String URL = "https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=" + apiKey;
 
         NewsData news = null;

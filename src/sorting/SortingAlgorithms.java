@@ -1,5 +1,10 @@
 package sorting;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 public class SortingAlgorithms {
 
 
@@ -245,10 +250,36 @@ public class SortingAlgorithms {
     }
 
 
-    public int[] bucketSort(int[] array) {
+    public int[] bucketSort(int[] array, int n ) {
         //implement here
         final long startTime = System.currentTimeMillis();
+        if (n <= 0)
+            return array;
+        @SuppressWarnings("unchecked")
+        ArrayList<Integer>[] bucket = new ArrayList[n];
 
+        // Create empty buckets
+        for (int i = 0; i < n; i++)
+            bucket[i] = new ArrayList<Integer>();
+
+        // Add elements into the buckets
+        for (int i = 0; i < n; i++) {
+            int bucketIndex = (int) array[i] * n;
+            bucket[bucketIndex].add(array[i]);
+        }
+
+        // Sort the elements of each bucket
+        for (int i = 0; i < n; i++) {
+            Collections.sort((bucket[i]));
+        }
+
+        // Get the sorted array
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0, size = bucket[i].size(); j < size; j++) {
+                array[index++] = bucket[i].get(j);
+            }
+        }
 
         final long endTime = System.currentTimeMillis();
         this.executionTime = endTime - startTime;

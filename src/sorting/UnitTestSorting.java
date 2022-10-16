@@ -20,11 +20,13 @@ public class UnitTestSorting {
         // unSortedArray = sorting.selectionSort(unSortedArray);
         // unSortedArray = sorting.insertionSort(unSortedArray);
         // unSortedArray = sorting.bubbleSort(unSortedArray);
-       // unSortedArray = sorting.mergeSort(unSortedArray);
-        unSortedArray = sorting.quickSort(unSortedArray);
+        // unSortedArray = sorting.mergeSort(unSortedArray);
+        // unSortedArray = sorting.quickSort(unSortedArray);
+        //  unSortedArray = sorting.heapSort(unSortedArray);
+            unSortedArray = sorting.bucketSort(unSortedArray, unSortedArray.length);
 
         // Verify if the unsorted array is sorted by the desired method
-        Assert.assertEquals(unSortedArray, sortedArray, "ARRAY IS NOT SORTED... YET!");
+        // Assert.assertEquals(unSortedArray, sortedArray, "ARRAY IS NOT SORTED... YET!");
 
 
         for (int i = 0; i < unSortedArray.length; i++) {
@@ -48,7 +50,7 @@ public class UnitTestSorting {
             while (array[ePointer] > pivot) {
                 ePointer--;
             }
-            if (sPointer <= ePointer){
+            if (sPointer <= ePointer) {
                 int temp = array[sPointer];
                 array[sPointer] = array[ePointer];
                 array[ePointer] = temp;
@@ -57,14 +59,14 @@ public class UnitTestSorting {
             }
         }
 
-        sort(array , low, ePointer);
-        sort(array, sPointer , high);
+        sort(array, low, ePointer);
+        sort(array, sPointer, high);
         return array;
     }
 
-    private static int[] sort(int [] array){
-          sort(array, 0, array.length - 1);
-          return array;
+    private static int[] sort(int[] array) {
+        sort(array, 0, array.length - 1);
+        return array;
 
     }
 
