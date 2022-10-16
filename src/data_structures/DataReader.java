@@ -45,7 +45,7 @@ public class DataReader {
             }
             // split the string wholeText into word and store it in a string array
             String[] arrText = wholeText.split(" ");
-            System.out.println("****************LinkedList*******************");
+            System.out.println("****************LinkedList in Fifo order*******************");
             // create a linkedList and store each word of arrText inside it.
             List<Object> linkedList = new LinkedList<>(Arrays.asList(arrText));
             //removing an element from a linked list
@@ -55,7 +55,7 @@ public class DataReader {
             ) {
                 System.out.println(w);
             }
-            System.out.println("****************Stack*******************");
+            System.out.println("****************Stack in Lifo order *******************");
             // we store each word into a stack with different method
             //1. create a stack
             Stack<Object> stack = new Stack<>();
@@ -67,7 +67,8 @@ public class DataReader {
             // iterate over stack using the iterator()
             Iterator it = stack.iterator();
             while (it.hasNext()) {
-                System.out.println(it.next());
+               // System.out.println(it.next());
+                System.out.println(stack.pop());
             }
             // searching for an element
             System.out.println(stack.search("the"));
